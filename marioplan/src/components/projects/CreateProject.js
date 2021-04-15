@@ -47,7 +47,7 @@ const CreateProject = (props) => {
 
 const mdp = (dispatch) => {
     return {
-        createProject: (project) => dispatch(CreateProject(project))
+        createProject: (project) => dispatch(createProject(project))
     }
 }
 
