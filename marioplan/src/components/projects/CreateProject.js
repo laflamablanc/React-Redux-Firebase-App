@@ -3,8 +3,9 @@ import {connect} from 'react-redux'
 import {createProject} from '../../store/actions/projectActions'
 
 const CreateProject = (props) => {
-    let [title, setTitle] = useState("")
-    let [content, setContent] = useState("")
+
+    const [title, setTitle] = useState("")
+    const [content, setContent] = useState("")
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -27,7 +28,7 @@ const CreateProject = (props) => {
     return (
        <div className="container">
            <form onSubmit = {handleSubmit} action="" className="white">
-                <h4 className="grey-text text-darken-3">Sign In</h4>
+                <h4 className="grey-text text-darken-3">Create New Project</h4>
                 <div className="input-field">
                    <label htmlFor="title">Title</label>
                    <input type="text" id="title" onChange={handleChange}/>

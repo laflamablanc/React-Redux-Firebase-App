@@ -7,6 +7,7 @@ import {applyMiddleware, createStore } from 'redux'
 import rootReducer from './store/reducers/rootReducer'
 import {Provider} from 'react-redux'
 import thunk from 'redux-thunk'
+window.React1 = require('react');
 
 const store = createStore(rootReducer, applyMiddleware(thunk))
 
@@ -18,6 +19,8 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
+
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
