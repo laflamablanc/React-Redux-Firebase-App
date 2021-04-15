@@ -2,13 +2,16 @@ import React, {useState} from 'react'
 import {connect} from 'react-redux'
 import {createProject} from '../../store/actions/projectActions'
 
-const CreateProject = () => {
+const CreateProject = (props) => {
     let [title, setTitle] = useState("")
     let [content, setContent] = useState("")
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(title, content)
+        props.createProject({
+            title: title,
+            content: content
+        })
         setTitle("")
         setContent("")
     }
