@@ -41,4 +41,10 @@ const CreateProject = () => {
     )
 }
 
-export default CreateProject
+const mdp = (dispatch) => {
+    return {
+        createProject: (project) => dispatch(CreateProject(project))
+    }
+}
+
+export default connect(null, mdp)(CreateProject)
