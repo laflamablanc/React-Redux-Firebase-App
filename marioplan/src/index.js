@@ -3,28 +3,35 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {applyMiddleware, createStore, compose } from 'redux'
+import {applyMiddleware, createStore } from 'redux'
 import rootReducer from './store/reducers/rootReducer'
 import {Provider} from 'react-redux'
 import thunk from 'redux-thunk'
-import { reduxFirestore, getFirestore } from 'redux-firestore'
-import { reactReduxFirebase, getFirebase } from 'react-redux-firebase'
-import fbConfig from './config/fbConfig'
+import { createFirestoreInstance, firestoreReducer, getFirestore } from 'redux-firestore'
+import { ReactReduxFirebaseProvider, getFirebase, firebaseReducer } from 'react-redux-firebase'
+import firebase from './config/fbConfig'
 
+const rrfConfig = { userProfile: 'users' }
 
-const store = createStore(rootReducer, 
-  compose(
+const store = createStore(
+  rootReducer,
   applyMiddleware(thunk.withExtraArgument({getFirestore, getFirebase})),
-  reduxFirestore(fbConfig),
-  reactReduxFirebase(fbConfig)
-  )
 )
+
+const rrfProps = {
+  firebase,
+  config: rrfConfig,
+  dispatch: store.dispatch,
+  createFirestoreInstance
+}
 
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store = {store}>
-      <App />
+      <ReactReduxFirebaseProvider {...rrfProps}>
+        <App/>
+      </ReactReduxFirebaseProvider>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
